@@ -1,2 +1,3 @@
-# laravel-docker-compose
+# Laravel Docker-compose
+
 Run Laravel projects using docker-compose
