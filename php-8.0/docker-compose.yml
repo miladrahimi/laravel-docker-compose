@@ -15,13 +15,12 @@ services:
       - php
 
   php:
-    build: ./docker/php/fpm
+    build: ./docker/php
     image: ${APP_NAME:-app}_php
     restart: always
     working_dir: /app
     volumes:
       - ./:/app/
-      - ~/.ssh/:/root/.ssh/
     depends_on:
       - mysql
       - redis
