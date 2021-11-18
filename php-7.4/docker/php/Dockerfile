@@ -16,9 +16,9 @@ RUN apt-get update && apt-get install -y \
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install PHP extensions
-RUN pecl install redis xdebug
+RUN pecl install redis
 RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd intl soap
-RUN docker-php-ext-enable redis xdebug
+RUN docker-php-ext-enable redis
 RUN docker-php-ext-configure intl
 
 RUN sed -i -e "s/upload_max_filesize = .*/upload_max_filesize = 1G/g" \
