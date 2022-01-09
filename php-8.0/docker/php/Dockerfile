@@ -21,8 +21,8 @@ RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd intl soap
 RUN docker-php-ext-enable redis
 RUN docker-php-ext-configure intl
 
-RUN sed -i -e "s/upload_max_filesize = .*/upload_max_filesize = 1G/g" \
-        -e "s/post_max_size = .*/post_max_size = 1G/g" \
+RUN sed -i -e "s/upload_max_filesize = .*/upload_max_filesize = 10G/g" \
+        -e "s/post_max_size = .*/post_max_size = 10G/g" \
         -e "s/memory_limit = .*/memory_limit = 512M/g" \
         /usr/local/etc/php/php.ini-production \
         && cp /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini

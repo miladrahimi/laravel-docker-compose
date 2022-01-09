@@ -3,6 +3,7 @@ version: '3'
 services:
   nginx:
     image: ghcr.io/getimages/nginx:1.21.1-alpine
+    container_name: sample_nginx
     restart: always
     working_dir: /app
     volumes:
@@ -16,7 +17,8 @@ services:
 
   php:
     build: ./docker/php
-    image: ${APP_NAME:-app}_php
+    image: sample_php
+    container_name: sample_php
     restart: always
     working_dir: /app
     volumes:
@@ -26,7 +28,8 @@ services:
       - redis
 
   horizon:
-    image: ${APP_NAME:-app}_php
+    image: sample_php
+    container_name: sample_horizon
     restart: always
     working_dir: /app
     command: [ "php", "artisan", "horizon" ]
@@ -36,7 +39,8 @@ services:
       - php
 
   cron:
-    image: ${APP_NAME:-app}_php
+    image: sample_php
+    container_name: sample_cron
     restart: always
     working_dir: /app
     command: [ "cron", "-f" ]
@@ -47,6 +51,7 @@ services:
 
   mysql:
     image: ghcr.io/getimages/mysql:8.0.25
+    container_name: sample_mysql
     restart: always
     environment:
       - MYSQL_DATABASE=${DB_DATABASE:-app}
@@ -58,6 +63,7 @@ services:
 
   redis:
     image: ghcr.io/getimages/redis:6.2.4-buster
+    container_name: sample_redis
     restart: always
     command: [ "redis-server", "--appendonly", "yes" ]
     volumes:
