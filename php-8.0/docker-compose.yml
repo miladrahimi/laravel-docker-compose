@@ -70,3 +70,4 @@ services:
       - ./docker/redis/data:/data
     ports:
       - 127.0.0.1:${REDIS_EXPOSED_PORT:-0}:6379
+
