@@ -1,0 +1,61 @@
+version: '3'
+
+services:
+  php:
+    build: ./docker/php
+    image: sample_php
+    container_name: sample_php
+    restart: always
+    working_dir: /app
+    command: [ "php", "artisan", "octane:start", "--host=0.0.0.0", "--port=80" ]
+    ports:
+      - ${PHP_EXPOSED_PORT:-0}:80
+    volumes:
+      - ./:/app/
+    depends_on:
+      - mysql
+      - redis
+
+  horizon:
+    image: sample_php
+    container_name: sample_horizon
+    restart: always
+    working_dir: /app
+    command: [ "php", "artisan", "horizon" ]
+    volumes:
+      - ./:/app
+    depends_on:
+      - php
+
+  cron:
+    image: sample_php
+    container_name: sample_cron
+    restart: always
+    working_dir: /app
+    command: [ "cron", "-f" ]
+    volumes:
+      - ./:/app
+    depends_on:
+      - php
+
+  mysql:
+    image: ghcr.io/getimages/mysql:8.0.29
+    container_name: sample_mysql
+    restart: always
+    environment:
+      - MYSQL_DATABASE=${DB_DATABASE:-app}
+      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD:-password}
+    ports:
+      - 127.0.0.1:${MYSQL_EXPOSED_PORT:-0}:3306
+    volumes:
+      - ./docker/mysql:/var/lib/mysql
+
+  redis:
+    image: ghcr.io/getimages/redis:7.0.0-bullseye
+    container_name: sample_redis
+    restart: always
+    # command: [ "redis-server", "--appendonly", "yes" ]
+    # volumes:
+    #   - ./docker/redis/data:/data
+    ports:
+      - 127.0.0.1:${REDIS_EXPOSED_PORT:-0}:6379
