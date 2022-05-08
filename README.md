@@ -4,7 +4,7 @@ Run Laravel projects (FPM & Octane) using Docker and Docker-compose.
 
 ## Running App
 
-```
+```shell
 # Download latest laravel
 # Merge docker-compose files into the Laravel directory
 cd /path/to/laravel
