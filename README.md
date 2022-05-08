@@ -14,7 +14,7 @@ chmod -R 0777 bootstrap/cache
 docker-compose build
 docker run --rm -it --volume $(pwd):/app sample_php composer install
 
-# If you need install octane and horizion:
+# If you need to install octane and horizion:
 docker run --rm -it --volume $(pwd):/app sample_php composer require laravel/horizon
 docker run --rm -it --volume $(pwd):/app sample_php composer require laravel/octane
 
