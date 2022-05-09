@@ -25,9 +25,11 @@ docker run --rm -it --volume $(pwd):/app sample_php php artisan key:generate
 
 # Only If you need to install octane
 docker run --rm -it --volume $(pwd):/app sample_php composer require laravel/octane
+docker run --rm -it --volume $(pwd):/app sample_php php artisan octane:install
 
 # Only If you need to install horizion
 docker run --rm -it --volume $(pwd):/app sample_php composer require laravel/horizon
+docker run --rm -it --volume $(pwd):/app sample_php php artisan horizon:install
 
 docker-compose up -d
 docker-compose exec php php artisan migrate
