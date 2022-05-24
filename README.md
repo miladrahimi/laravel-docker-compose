@@ -18,16 +18,15 @@ chmod -R 0777 bootstrap/cache
 docker-compose build
 
 # Replace sample_php with your project name
-# (the php image name from `docker images` command)
 
 docker run --rm -it --volume $(pwd):/app sample_php composer install
 docker run --rm -it --volume $(pwd):/app sample_php php artisan key:generate
 
-# Only If you need to install octane
+# Only if you need to install octane
 docker run --rm -it --volume $(pwd):/app sample_php composer require laravel/octane
 docker run --rm -it --volume $(pwd):/app sample_php php artisan octane:install
 
-# Only If you need to install horizion
+# Only if you need to install horizion
 docker run --rm -it --volume $(pwd):/app sample_php composer require laravel/horizon
 docker run --rm -it --volume $(pwd):/app sample_php php artisan horizon:install
 
