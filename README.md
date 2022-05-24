@@ -35,5 +35,5 @@ docker-compose up -d
 docker-compose exec php php artisan migrate
 docker-compose ps
 
-# Surf the exposed port for php container in your web browser
+# Surf the exposed port for nginx or php container in your web browser
 ```
