@@ -7,7 +7,7 @@ Run Laravel projects (FPM & Octane) using Docker and Docker-compose tools.
 ```shell
 # Download the latest version of Laravel.
 
-# Merge docker-compose files (from this repo) into the Laravel directory.
+# Merge appropriate docker-compose files (from this repo) into the Laravel directory.
 
 cd /path/to/laravel
 
@@ -25,11 +25,11 @@ docker-compose build
 docker run --rm -it --volume $(pwd):/app sample_php composer install
 docker run --rm -it --volume $(pwd):/app sample_php php artisan key:generate
 
-# Only if you need to install horizion:
+# Only if you need to install Horizion:
 docker run --rm -it --volume $(pwd):/app sample_php composer require laravel/horizon
 docker run --rm -it --volume $(pwd):/app sample_php php artisan horizon:install
 
-# Only if you need to install octane:
+# Only if you need to install Octane:
 docker run --rm -it --volume $(pwd):/app sample_php composer require laravel/octane
 docker run --rm -it --volume $(pwd):/app sample_php php artisan octane:install
 
@@ -37,5 +37,5 @@ docker-compose up -d
 docker-compose exec php php artisan migrate
 docker-compose ps
 
-# Surf the exposed port for nginx or php container in your web browser.
+# Surf the exposed port for NGINX or PHP container in your web browser.
 ```
