@@ -1,8 +1,8 @@
 # Laravel Docker-compose
 
-Run Laravel projects (FPM & Octane) using Docker and Docker-compose.
+Run Laravel projects (FPM & Octane) using Docker and Docker-compose tools.
 
-## Running App
+## Documentation
 
 ```shell
 # Download the latest version of Laravel.
