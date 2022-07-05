@@ -31,7 +31,7 @@ RUN sed -i -e "s/upload_max_filesize = .*/upload_max_filesize = 1G/g" \
 WORKDIR /app
 
 # Get latest Composer and install
-COPY --from=ghcr.io/getimages/composer:2.1.9 /usr/bin/composer /usr/bin/composer
+COPY --from=ghcr.io/getimages/composer:2.2.6 /usr/bin/composer /usr/bin/composer
 
 # Setup Crontab
 RUN touch crontab.tmp
