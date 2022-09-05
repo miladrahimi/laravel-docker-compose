@@ -7,11 +7,12 @@ Run Laravel projects (FPM & Octane) using Docker and Docker-compose tools.
 ```shell
 # Download the latest version of Laravel.
 
-# Merge appropriate docker-compose files (from this repo) into the Laravel directory.
+# Put one of the docker-compose files from this repo into the Laravel directory.
 
 cd /path/to/laravel
 
-# Add docker-compose envs to .env.example file.
+# Add these variables to .env.example and assign them to proper port numbers.
+# APP_EXPOSED_PORT, MYSQL_EXPOSED_PORT, REDIS_EXPOSED_PORT
 
 cp .env.example .env
 
@@ -37,5 +38,5 @@ docker-compose up -d
 docker-compose exec php php artisan migrate
 docker-compose ps
 
-# Surf the exposed port for NGINX or PHP container in your web browser.
+# Surf 127.0.0.1:{APP_EXPOSED_PORT} in your web browser.
 ```
