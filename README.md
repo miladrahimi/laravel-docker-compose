@@ -40,3 +40,8 @@ docker-compose ps
 
 # Surf 127.0.0.1:{APP_EXPOSED_PORT} in your web browser.
 ```
+
+
+### Infrastructure model
+
+![Infrastructure model](.infragenie/infrastructure_model.png)
