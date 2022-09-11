@@ -41,6 +41,15 @@ docker-compose ps
 # Surf 127.0.0.1:{APP_EXPOSED_PORT} in your web browser.
 ```
 
+### Docker Images
+
+All the docker images we've used are official images pulled from the Docker Hub and then pushed into GitHub Registry.
+You can remove the image base URLs (`ghcr.io/getimages/`) like the example below to use the Docker Hub images instead.
+
+```
+GitHub:     ghcr.io/getimages/nginx:1.21.1-alpine
+Docker Hub:                   nginx:1.21.1-alpine
+```
 
 ### Infrastructure model
 
