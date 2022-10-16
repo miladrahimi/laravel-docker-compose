@@ -50,7 +50,3 @@ You can remove the image base URLs (`ghcr.io/getimages/`) like the example below
 GitHub:     ghcr.io/getimages/nginx:1.21.1-alpine
 Docker Hub:                   nginx:1.21.1-alpine
 ```
-
-### Infrastructure model
-
-![Infrastructure model](.infragenie/infrastructure_model.png)
