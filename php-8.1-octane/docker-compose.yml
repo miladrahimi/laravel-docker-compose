@@ -11,7 +11,7 @@ services:
     ports:
       - ${APP_EXPOSED_PORT:-0}:80
     volumes:
-      - ./:/app/
+      - ./:/app
     depends_on:
       - mysql
       - redis
