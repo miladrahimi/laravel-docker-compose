@@ -21,8 +21,6 @@ chmod -R 0777 bootstrap/cache
 
 docker-compose build
 
-# Replace my_php with your project name in the following commands.
-
 docker run --rm -it --volume $(pwd):/app my_php composer install
 docker run --rm -it --volume $(pwd):/app my_php php artisan key:generate
 
