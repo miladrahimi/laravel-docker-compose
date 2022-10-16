@@ -21,18 +21,18 @@ chmod -R 0777 bootstrap/cache
 
 docker-compose build
 
-# Replace sample_php with your project name in the following commands.
+# Replace my_php with your project name in the following commands.
 
-docker run --rm -it --volume $(pwd):/app sample_php composer install
-docker run --rm -it --volume $(pwd):/app sample_php php artisan key:generate
+docker run --rm -it --volume $(pwd):/app my_php composer install
+docker run --rm -it --volume $(pwd):/app my_php php artisan key:generate
 
 # Only if you need to install Horizion:
-docker run --rm -it --volume $(pwd):/app sample_php composer require laravel/horizon
-docker run --rm -it --volume $(pwd):/app sample_php php artisan horizon:install
+docker run --rm -it --volume $(pwd):/app my_php composer require laravel/horizon
+docker run --rm -it --volume $(pwd):/app my_php php artisan horizon:install
 
 # Only if you need to install Octane:
-docker run --rm -it --volume $(pwd):/app sample_php composer require laravel/octane
-docker run --rm -it --volume $(pwd):/app sample_php php artisan octane:install
+docker run --rm -it --volume $(pwd):/app my_php composer require laravel/octane
+docker run --rm -it --volume $(pwd):/app my_php php artisan octane:install
 
 docker-compose up -d
 docker-compose exec php php artisan migrate
