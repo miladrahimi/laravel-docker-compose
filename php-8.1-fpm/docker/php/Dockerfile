@@ -1,4 +1,4 @@
-FROM ghcr.io/getimages/php:8.0.8-fpm-buster
+FROM ghcr.io/getimages/php:8.1.6-fpm-bullseye
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
