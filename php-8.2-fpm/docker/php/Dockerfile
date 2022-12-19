@@ -1,4 +1,4 @@
-FROM ghcr.io/getimages/php:8.1.13-cli-bullseye
+FROM ghcr.io/getimages/php:8.2.0-fpm-bullseye
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
@@ -16,14 +16,13 @@ RUN apt-get update && apt-get install -y \
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install PHP extensions
-RUN pecl install redis swoole
-RUN docker-php-ext-install pdo_mysql exif pcntl bcmath gd intl soap
-RUN docker-php-ext-enable redis swoole
+RUN pecl install redis
+RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd intl soap
+RUN docker-php-ext-enable redis
 RUN docker-php-ext-configure intl
 
-# Configure PHP
-RUN sed -i -e "s/upload_max_filesize = .*/upload_max_filesize = 1G/g" \
-        -e "s/post_max_size = .*/post_max_size = 1G/g" \
+RUN sed -i -e "s/upload_max_filesize = .*/upload_max_filesize = 10G/g" \
+        -e "s/post_max_size = .*/post_max_size = 10G/g" \
         -e "s/memory_limit = .*/memory_limit = 512M/g" \
         /usr/local/etc/php/php.ini-production \
         && cp /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini
@@ -31,7 +30,7 @@ RUN sed -i -e "s/upload_max_filesize = .*/upload_max_filesize = 1G/g" \
 # Set working directory
 WORKDIR /app
 
-# Get latest Composer and install
+# Get latest Composer
 COPY --from=ghcr.io/getimages/composer:2.4.4 /usr/bin/composer /usr/bin/composer
 
 # Setup Crontab

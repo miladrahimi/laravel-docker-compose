@@ -1,4 +1,4 @@
-FROM ghcr.io/getimages/php:8.1.13-cli-bullseye
+FROM ghcr.io/getimages/php:8.2.0-cli-bullseye
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \

@@ -2,7 +2,7 @@ version: '3'
 
 services:
   nginx:
-    image: ghcr.io/getimages/nginx:1.21.1-alpine
+    image: ghcr.io/getimages/nginx:1.23.3-alpine
     restart: always
     working_dir: /app
     volumes:
@@ -46,7 +46,7 @@ services:
       - php
 
   mysql:
-    image: ghcr.io/getimages/mysql:8.0.25
+    image: ghcr.io/getimages/mysql:8.0.31-debian
     restart: always
     environment:
       - MYSQL_DATABASE=${DB_DATABASE:-app}
@@ -59,8 +59,9 @@ services:
   redis:
     image: ghcr.io/getimages/redis:6.2.4-buster
     restart: always
-    command: [ "redis-server", "--appendonly", "yes" ]
-    volumes:
-      - ./docker/redis/data:/data
+    # Uncomment to enable Redis persistent storage:
+    #command: [ "redis-server", "--appendonly", "yes" ]
+    #volumes:
+      #- ./docker/redis/data:/data
     ports:
       - 127.0.0.1:${REDIS_EXPOSED_PORT:-0}:6379
