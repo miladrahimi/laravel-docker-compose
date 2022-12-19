@@ -8,7 +8,7 @@ It includes:
 * MySQL v8.
 * Redis v6 and v7 with configurable persistent storage.
 * Horizon package.
-* Configured Cron Jobs for running Scheduled Tasks.
+* Configured Crontab for running Scheduled Tasks.
 
 ## Documentation
 
