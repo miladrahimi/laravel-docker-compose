@@ -1,6 +1,14 @@
 # Laravel Docker-compose
 
-Run Laravel projects (FPM & Octane) using Docker and Docker-compose tools.
+Run Laravel projects (FPM/NGINX & Octane/Swoole) using Docker and Docker-compose.
+
+It includes:
+* PHP v7.4, v8.1, and v8.2.
+* Separate docker-compose files for FPM/NGINX and Octane/Swoole.
+* MySQL v8.
+* Redis v6 and v7 with configurable persistent storage.
+* Horizon package.
+* Configured Cron Jobs for running Scheduled Tasks.
 
 ## Documentation
 
