@@ -6,7 +6,7 @@ services:
     image: my_php
     restart: always
     working_dir: /app
-    command: [ "php", "artisan", "octane:start", "--host=0.0.0.0", "--port=80" ]
+    command: [ "php", "artisan", "octane:start", "--rpc-port=6001", "--server=roadrunner", "--host=0.0.0.0", "--port=80" ]
     ports:
       - ${APP_EXPOSED_PORT:-0}:80
     volumes:
