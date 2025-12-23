@@ -1,4 +1,4 @@
-FROM ghcr.io/getimages/php:8.2.0-fpm-bullseye
+FROM php:8.2-fpm-bookworm
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
@@ -31,7 +31,7 @@ RUN sed -i -e "s/upload_max_filesize = .*/upload_max_filesize = 10G/g" \
 WORKDIR /app
 
 # Get latest Composer
-COPY --from=ghcr.io/getimages/composer:2.4.4 /usr/bin/composer /usr/bin/composer
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
 # Setup Crontab
 RUN touch crontab.tmp

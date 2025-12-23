@@ -1,0 +1,58 @@
+version: '3'
+
+services:
+  php:
+    build: ./docker/php
+    image: my_php
+    restart: always
+    working_dir: /app
+    command: [ "php", "artisan", "octane:start", "--host=0.0.0.0", "--port=80" ]
+    ports:
+      - ${APP_EXPOSED_PORT:-0}:80
+    volumes:
+      - ./:/app
+    depends_on:
+      - mysql
+      - redis
+
+  horizon:
+    image: my_php
+    restart: always
+    working_dir: /app
+    command: [ "php", "artisan", "horizon" ]
+    volumes:
+      - ./:/app
+    depends_on:
+      - php
+
+  cron:
+    image: my_php
+    restart: always
+    working_dir: /app
+    command: [ "cron", "-f" ]
+    volumes:
+      - ./:/app
+    depends_on:
+      - php
+
+  mysql:
+    image: mysql:8.0-bookworm
+    restart: always
+    environment:
+      - MYSQL_DATABASE=${DB_DATABASE:-app}
+      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD:-password}
+    ports:
+      - 127.0.0.1:${MYSQL_EXPOSED_PORT:-0}:3306
+    volumes:
+      - ./docker/mysql/data:/var/lib/mysql
+      - ./docker/mysql/init:/docker-entrypoint-initdb.d
+
+  redis:
+    image: redis:8.4-bookworm
+    restart: always
+    # Uncomment to enable Redis persistent storage:
+    #command: [ "redis-server", "--appendonly", "yes" ]
+    #volumes:
+      #- ./docker/redis/data:/data
+    ports:
+      - 127.0.0.1:${REDIS_EXPOSED_PORT:-0}:6379

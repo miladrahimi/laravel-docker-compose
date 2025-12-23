@@ -1,0 +1,3 @@
+-- Example MySQL init script
+-- Uncomment and adjust to create the default app_test database on first boot.
+-- CREATE DATABASE IF NOT EXISTS app_test CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
