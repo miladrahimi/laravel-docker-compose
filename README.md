@@ -4,27 +4,27 @@ Preconfigured Docker Compose setups for Laravel applications.
 It's a lightweight alternative to Laravel Sail with more control over your environment.
 
 This repository provides three main stacks:
-- FPM + Nginx Docker Compose for Laravel with PHP 7.4/8.1/8.2/8.3/8.4.
-- Octane/FrankenPHP Docker Compose for Laravel with PHP 8.3/8.4.
-- Octane/Swoole Docker Compose for Laravel with PHP 8.1/8.2/8.3/8.4.
+- **FPM + Nginx** Docker Compose files for Laravel with PHP 7.4/8.1/8.2/8.3/8.4.
+- **Octane/FrankenPHP** Docker Compose files for Laravel with PHP 8.3/8.4.
+- **Octane/Swoole** Docker Compose files for Laravel with PHP 8.1/8.2/8.3/8.4.
 
 Each stack includes:
-- PHP containers:
-  - PHP-FPM, PHP-CLI, or FrankenPHP
-  - Horizon for handling queued jobs and events.
-  - Cron for scheduled tasks.
-- Nginx container for reverse proxy (only in FPM stack).
-- MySQL container for database storage.
-- Redis container for caching and session storage.
+- **PHP** containers:
+  - PHP-FPM, FrankenPHP, or PHP-CLI + Swoole extension
+  - Horizon for running Laravel Horizon.
+  - PHP CLI + Crontab for running scheduled tasks.
+- **Nginx** container for reverse proxy (only in FPM stack).
+- **MySQL** container for database storage.
+- **Redis** container for caching and session storage.
 
 ## Features
 
-- Separate `compose.yml` files per PHP version and stack (FPM, Octane/FrankenPHP, and Octane/Swoole).
-- Debian Bookworm–based images: php, nginx, mysql, redis, and frankenphp.
-- Horizon (queues, jobs, events) and cron for scheduled tasks are included in all stacks.
-- Persistent MySQL data in docker/mysql/data with automatic init scripts from docker/mysql/init/.
-- Optional persistent Redis storage (uncomment in compose.yml).
-- Optional `docker/frankenphp/{data,config}` directories hold Caddy data so FrankenPHP HTTPS certs persist across runs.
+- Separate `compose.yml` file per PHP version and stack (FPM, Octane/FrankenPHP, and Octane/Swoole).
+- Debian Bookworm–based images for PHP, Nginx, MySQL, Redis, and FrankenPHP.
+- Horizon and crontab containers are included in all stacks.
+- Persistent MySQL data in `docker/mysql/data` with automatic init scripts from `docker/mysql/init` directory.
+- The `docker/frankenphp/{data,config}` directories to store Caddy data and FrankenPHP HTTPS certs.
+- Optional persistent Redis storage (uncomment in `compose.yml`).
 
 ## Documentation
 
