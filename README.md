@@ -50,7 +50,7 @@ docker run --rm -it --volume $(pwd):/app my_php composer install
 # Generate a new application key if it doesn't exist.
 docker run --rm -it --volume $(pwd):/app my_php php artisan key:generate
 
-# Install and configure Laravel Octane (only required for Octane/FrankenPHP and Octane/Swoole stacks)
+# Install and configure Laravel Octane (only required for Octane/FrankenPHP or Octane/Swoole)
 docker run --rm -it --volume $(pwd):/app my_php composer require laravel/octane
 docker run --rm -it --volume $(pwd):/app my_php php artisan octane:install
 
