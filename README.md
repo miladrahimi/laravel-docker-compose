@@ -31,23 +31,23 @@ Each stack includes:
 Copy a stack’s `compose.yml` and `docker` folder into your Laravel project, then run:
 
 ```shell
-# Create a new .env file from the example if it doesn't exist.
+# Create a new .env file from the example if it doesn't exist
 # Add these variables to .env and assign them to proper port numbers:
 # - APP_EXPOSED_PORT
 # - MYSQL_EXPOSED_PORT
 # - REDIS_EXPOSED_PORT
 cp .env.example .env
 
-# Ensure Laravel can write to storage and cached files (adjust group/owner if needed).
+# Ensure Laravel can write to storage and cached files (adjust group/owner if needed)
 chmod -R 775 storage bootstrap/cache
 
-# Build the Docker images.
+# Build the Docker images
 docker compose -f compose.yml build
 
-# Install required Composer packages.
+# Install required Composer packages
 docker run --rm -it --volume $(pwd):/app my_php composer install
 
-# Generate a new application key if it doesn't exist.
+# Generate a new application key if it doesn't exist
 docker run --rm -it --volume $(pwd):/app my_php php artisan key:generate
 
 # Install and configure Laravel Octane (only required for Octane/FrankenPHP or Octane/Swoole)
@@ -58,14 +58,14 @@ docker run --rm -it --volume $(pwd):/app my_php php artisan octane:install
 docker run --rm -it --volume $(pwd):/app my_php composer require laravel/horizon
 docker run --rm -it --volume $(pwd):/app my_php php artisan horizon:install
 
-# Run your Laravel application.
+# Run your Laravel application
 docker compose -f compose.yml up -d
 
-# Run database migrations.
+# Run database migrations
 docker compose -f compose.yml exec php php artisan migrate
 
-# Check the status of the containers.
+# Check the status of the containers
 docker compose -f compose.yml ps
 
-# Surf 127.0.0.1:{APP_EXPOSED_PORT} in your web browser.
+# Surf 127.0.0.1:{APP_EXPOSED_PORT} in your web browser...
 ```
