@@ -3,32 +3,33 @@
 Preconfigured Docker Compose setups for Laravel applications.
 It's a lightweight alternative to Laravel Sail with more control over your environment.
 
-This repository provides three main stacks:
+This repository provides three main stacks you can choose to run your Laravel application:
 - **FPM + Nginx** Docker Compose files for Laravel with PHP 7.4/8.1/8.2/8.3/8.4.
 - **Octane/FrankenPHP** Docker Compose files for Laravel with PHP 8.3/8.4.
 - **Octane/Swoole** Docker Compose files for Laravel with PHP 8.1/8.2/8.3/8.4.
 
 Each stack includes:
 - **PHP** containers:
-  - PHP-FPM, FrankenPHP, or PHP-CLI + Swoole extension
+  - PHP-FPM, FrankenPHP, or PHP-CLI + Swoole extension.
   - Horizon for running Laravel Horizon.
   - PHP CLI + Crontab for running scheduled tasks.
-- **Nginx** container for reverse proxy (only in FPM stack).
+- **Nginx** container for reverse proxy (only in **FPM + Nginx** stack).
 - **MySQL** container for database storage.
 - **Redis** container for caching and session storage.
 
 ## Features
 
-- Separate `compose.yml` file per PHP version and stack (FPM, Octane/FrankenPHP, and Octane/Swoole).
+- Separate `compose.yml` file per PHP version and stack (FPM + Nginx, Octane/FrankenPHP, and Octane/Swoole).
 - Debian Bookworm–based images for PHP, Nginx, MySQL, Redis, and FrankenPHP.
-- Horizon and crontab containers are included in all stacks.
-- Persistent MySQL data in `docker/mysql/data` with automatic init scripts from `docker/mysql/init` directory.
-- The `docker/frankenphp/{data,config}` directories to store Caddy data and FrankenPHP HTTPS certs.
-- Optional persistent Redis storage (uncomment in `compose.yml`).
+- Horizon and Cron (`crontab`) containers for processing queued jobs and scheduled tasks.
+- Persistent MySQL data in `./docker/mysql/data` with automatic init scripts from `./docker/mysql/init` directory.
+- The `./docker/frankenphp/{data,config}` directories to store Caddy data and FrankenPHP HTTPS certs.
+- Redis storage with optional persistent (uncomment in `compose.yml`).
 
 ## Documentation
 
-Copy a stack’s `compose.yml` and `docker` folder into your Laravel project, then run:
+Copy the `compose.yml` file and the `docker` directory from the selected stack/version directory into your Laravel project,
+then run:
 
 ```shell
 # Create a new .env file from the example if it doesn't exist
@@ -59,13 +60,13 @@ docker run --rm -it --volume $(pwd):/app my_php composer require laravel/horizon
 docker run --rm -it --volume $(pwd):/app my_php php artisan horizon:install
 
 # Run your Laravel application
-docker compose -f compose.yml up -d
+docker compose up -d
 
 # Run database migrations
-docker compose -f compose.yml exec php php artisan migrate
+docker compose exec php php artisan migrate
 
 # Check the status of the containers
-docker compose -f compose.yml ps
+docker compose ps
 
 # Surf 127.0.0.1:{APP_EXPOSED_PORT} in your web browser...
 ```
